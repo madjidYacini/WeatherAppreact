@@ -19,7 +19,7 @@ class App extends React.Component {
     e.preventDefault(); 
     const city = e.target.elements.city.value;
     const country = e.target.elements.city.value;
-    // try {
+    try {
       
       const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}`);
      
@@ -31,10 +31,11 @@ class App extends React.Component {
           country : data.sys.country,
           humidity : data.main.humidity,
           description : data.weather[0].description,
-          err :" "
+          err :""
     
         })
         console.log(data)
+        console.log("MADJID"+data.name)
         
       }else{
         this.setState({
@@ -46,9 +47,10 @@ class App extends React.Component {
     err : "please enter values"
         })
       }
-    // } catch (error) {
-    //   console.log(error)
-    // }
+    } catch (error) {
+      console.log(error)
+      alert("city or country not found, please try again with a good syntax")
+    }
    
     
   }
